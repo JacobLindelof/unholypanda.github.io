@@ -127,8 +127,8 @@ def get_current_cutoffs():
 
     leagues_hightscores_url = "https://secure.runescape.com/m=hiscore_oldschool_seasonal/overall?category_type=1&table=0&page="
     
-    on_last_page = True
-    bronze_cutoff = 246922
+    on_last_page = False
+    bronze_cutoff = None
 
     increment = True
     increment_amount = 500

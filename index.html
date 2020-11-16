@@ -2,14 +2,20 @@
     <head>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
         <style>
+            body{
+                padding: 0;
+                margin: 0;
+            }
             .container {
-                position: absolute; top: 0; left: 0; height: 100%; width: 100%;
+                background-color: #071022;
+                height: 100%;
+                width: 100%
             }
         </style>
     </head>
     <body>
         <div class="container">
-            <canvas id="myChart" height="100%"></canvas>
+            <canvas id="myChart"></canvas>
         </div>
         <script>
             let datasets = null;
@@ -25,7 +31,7 @@
                 var chart = new Chart(ctx, {
                     // The type of chart we want to create
                     type: 'line',
-
+        
                     // The data for our dataset
                     data: {
                         labels: labels,
@@ -34,6 +40,40 @@
 
                     // Configuration options go here
                     options: {
+                        color: '#cbd9f4',
+                        defaultFontColor: '#cbd9f4',
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        title: {
+                            display: true,
+                            fontSize: 20,
+                            text: 'Trailblazer Trophy Point Cutoffs',
+                            fontColor: '#cbd9f4'
+                        },
+                        legend: {
+                            labels: {
+                                fontColor: '#cbd9f4'
+                            }
+                        },
+                        scales: {
+                            yAxes: [{
+                                gridLines: {
+                                    color: '#62686e',
+                                },
+                                ticks: {
+                                    beginAtZero:true,
+                                    fontColor: '#cbd9f4'
+                                },
+                            }],
+                            xAxes: [{
+                                gridLines: {
+                                    color: '#62686e',
+                                },
+                                ticks: {
+                                    fontColor: '#cbd9f4'
+                                },
+                            }]
+                        },
                         spanGaps: true,
                     }
                 });
