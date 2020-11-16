@@ -174,7 +174,7 @@ def get_current_cutoffs():
             else:
                 last_page -= 1
 
-        time.sleep(500)
+        time.sleep(.5)
 
     try:
         cutoffs = json.loads(open("cutoffs.json", 'r').read())
