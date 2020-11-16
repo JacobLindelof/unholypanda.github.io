@@ -76,7 +76,6 @@
     {
       "label": "Iron",
       "fill": false,
-      "cubicInterpolationMode": "monotone",
       "backgroundColor": "rgb(125, 117, 117)",
       "borderColor": "rgb(125, 117, 117)",
       "data": [

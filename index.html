@@ -18,6 +18,8 @@
             <canvas id="myChart"></canvas>
         </div>
         <script>
+            Chart.defaults.global.elements.point.radius = 5;
+
             let datasets = null;
             let labels = null;
 
@@ -69,6 +71,7 @@
                                     color: '#62686e',
                                 },
                                 ticks: {
+                                    backdropColor: 'white',
                                     beginAtZero:true,
                                     fontColor: '#cbd9f4'
                                 },
