@@ -2,12 +2,13 @@ import json
 import time
 import datetime
 
-import requests
+from incapsula import IncapSession
 from bs4 import BeautifulSoup
+from fake_useragent import UserAgent
 
 def get_cutoff_for_rank(rank_cutoff):
     leagues_hightscores_url = "https://secure.runescape.com/m=hiscore_oldschool_seasonal/overall?category_type=1&table=0&page="
-
+    requests = IncapSession()
     page = int(rank_cutoff / 25) + 1
     print(f"Rank Cutoff: {rank_cutoff} | Page: {page}")
     r = requests.get(leagues_hightscores_url + str(page))
@@ -115,6 +116,13 @@ def generate_chart_data(cutoff_data):
 
 
 def get_current_cutoffs():
+    ua = UserAgent()
+    headers = {
+        'User-Agent': ua.chrome,
+    }
+    requests = IncapSession()
+    
+    print(headers)
     try:
         last_page = open('last_page.txt', 'r').read()
     except FileNotFoundError:
@@ -137,7 +145,8 @@ def get_current_cutoffs():
     while not on_last_page:
         print(last_page)
 
-        r = requests.get(leagues_hightscores_url + str(last_page))
+        r = requests.get(leagues_hightscores_url + str(last_page), headers=headers)
+        print(r.text)
         soup = BeautifulSoup(r.content, 'html.parser')
         scores = soup.find_all("tr")
 
