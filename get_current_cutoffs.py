@@ -1,18 +1,31 @@
 import json
 import time
 import datetime
+import random
 
 from incapsula import IncapSession
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
 
 def get_cutoff_for_rank(rank_cutoff):
     leagues_hightscores_url = "https://secure.runescape.com/m=hiscore_oldschool_seasonal/overall?category_type=1&table=0&page="
-    requests = IncapSession()
     page = int(rank_cutoff / 25) + 1
+
+    options = Options()
+    options.add_argument("window-size=1400,600")
+    requests = webdriver.Chrome('./chromedriver')
+    ua = UserAgent()
+    a = ua.random
+    user_agent = ua.random
+    options.add_argument(f'user-agent={user_agent}')
+    requests.get(leagues_hightscores_url + str(page))
+    soup = BeautifulSoup(requests.page_source, 'html.parser')
+    requests.quit()
+        
     print(f"Rank Cutoff: {rank_cutoff} | Page: {page}")
-    r = requests.get(leagues_hightscores_url + str(page))
-    soup = BeautifulSoup(r.content, 'html.parser')
     scores = soup.find_all("tr")
     
     for score in scores[2:]:
@@ -25,7 +38,7 @@ def get_cutoff_for_rank(rank_cutoff):
             print("Found Cutoff")
             return points
         
-    time.sleep(.1)
+    time.sleep(random.random())
 
 def generate_chart_data(cutoff_data):
     start_date = datetime.datetime.strptime(list(cutoff_data)[0], '%Y-%m-%d')
@@ -116,13 +129,8 @@ def generate_chart_data(cutoff_data):
 
 
 def get_current_cutoffs():
-    ua = UserAgent()
-    headers = {
-        'User-Agent': ua.chrome,
-    }
-    requests = IncapSession()
-    
-    print(headers)
+    requests = webdriver.Chrome('./chromedriver')
+
     try:
         last_page = open('last_page.txt', 'r').read()
     except FileNotFoundError:
@@ -145,9 +153,18 @@ def get_current_cutoffs():
     while not on_last_page:
         print(last_page)
 
-        r = requests.get(leagues_hightscores_url + str(last_page), headers=headers)
-        print(r.text)
-        soup = BeautifulSoup(r.content, 'html.parser')
+
+        options = Options()
+        options.add_argument("window-size=1400,600")
+        requests = webdriver.Chrome('./chromedriver')
+        ua = UserAgent()
+        a = ua.random
+        user_agent = ua.random
+        options.add_argument(f'user-agent={user_agent}')
+        requests.get(leagues_hightscores_url + str(last_page))
+        soup = BeautifulSoup(requests.page_source, 'html.parser')
+        requests.quit()
+
         scores = soup.find_all("tr")
 
         first = scores[2].find_all('td')
@@ -183,7 +200,7 @@ def get_current_cutoffs():
             else:
                 last_page -= 1
 
-        time.sleep(.5)
+        time.sleep(random.random())
 
     try:
         cutoffs = json.loads(open("cutoffs.json", 'r').read())
