@@ -68,29 +68,29 @@ def generate_chart_data(cutoff_data):
         'mithril': {
             "label": 'Mithril',
             "fill": False,
-            "backgroundColor": 'rgb(62, 62, 92)',
-            "borderColor": 'rgb(62, 62, 92)',
+            "backgroundColor": '#5f5f94',
+            "borderColor": '#5f5f94',
             "data": []
         },
         'adamant': {
             "label": 'Adamant',
             "fill": False,
-            "backgroundColor": 'rgb(67, 85, 67)',
-            "borderColor": 'rgb(67, 85, 67)',
+            "backgroundColor": '#678567',
+            "borderColor": '#678567',
             "data": []
         },
         'rune': {
             "label": 'Rune',
             "fill": False,
-            "backgroundColor": 'rgb(63, 85, 93)',
-            "borderColor": 'rgb(63, 85, 93)',
+            "backgroundColor": '#5d808c',
+            "borderColor": '#5d808c',
             "data": []
         },
         'dragon': {
             "label": 'Dragon',
             "fill": False,
-            "backgroundColor": 'rgb(91, 17, 9)',
-            "borderColor": 'rgb(91, 17, 9)',
+            "backgroundColor": 'rgb(156, 29, 14)',
+            "borderColor": 'rgb(156, 29, 14)',
             "data": []
         },
     }
