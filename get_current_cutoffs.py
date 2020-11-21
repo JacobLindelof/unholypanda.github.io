@@ -269,5 +269,9 @@ def get_current_cutoffs():
 
     generate_chart_data(cutoffs)
 
+    page_file = open('last_page.txt', 'w')
+    page_file.write(last_page)
+    page_file.close()
+
 if __name__ == "__main__":
     get_current_cutoffs()
