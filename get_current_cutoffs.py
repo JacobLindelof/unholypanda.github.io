@@ -135,7 +135,7 @@ def get_current_cutoffs():
         last_page = open('last_page.txt', 'r').read()
     except FileNotFoundError:
         last_page = open('last_page.txt', 'w')
-        last_page.write("9000")
+        last_page.write("6400")
         last_page.close()
         last_page = open('last_page.txt', 'r').read()
     
